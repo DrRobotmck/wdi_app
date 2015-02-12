@@ -1,6 +1,11 @@
 class StudentsController < ApplicationController
 
 	before_action :authorized!, only: [:show]
+	before_action :instructor?, only: [:index]
+
+	def index
+
+	end
 
 	def show
 		@student = Student.find(params[:id])
@@ -9,8 +14,7 @@ class StudentsController < ApplicationController
 	private
 
 	def authorized!
-		binding.pry
-  	unless params[:id] == session[:client_id]
+  	unless params[:id].to_i == session[:client_id].to_i
   		redirect_to student_path(session[:client_id])
   	end
   end

@@ -8,6 +8,7 @@ RSpec.describe Student, :type => :model do
 	it { should validate_presence_of :github_userid }
 	it { should validate_presence_of :email }
 	it { should validate_presence_of :birthday }
+	it { should have_secure_password }
 
 	it { should allow_value(/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/).for(:email) }
 
@@ -18,7 +19,9 @@ RSpec.describe Student, :type => :model do
 			github_username: 'c',
 			github_userid: 1,
 			email: 'a@b.com',
-			birthday: '09-08-1988'
+			birthday: '09-08-1988',
+			password: '123',
+			password_confirmation: '123'
 			})
 		student2 = Student.new({
 			first_name: 'aa',
@@ -26,7 +29,9 @@ RSpec.describe Student, :type => :model do
 			github_username: 'c',
 			github_userid: 1,
 			email: 'a@b.com',
-			birthday: '09-08-1988'
+			birthday: '09-08-1988',
+			password: '123',
+			password_confirmation: '123'
 			})
 
 	 	expect(student2.valid?).to eq false

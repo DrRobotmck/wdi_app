@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211151002) do
+ActiveRecord::Schema.define(version: 20150212205012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: true do |t|
-    t.string   "name"
-    t.string   "topic"
     t.float    "comfortability"
     t.float    "completeness"
     t.datetime "created_at"
@@ -51,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150211151002) do
     t.string   "github_username", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "students", force: true do |t|
@@ -63,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150211151002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cohort_id"
+    t.string   "password_digest"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree

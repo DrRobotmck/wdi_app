@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
-  resources :students, only: [:show]
+  resources :students, only: [:index, :show]
+  post '/login' => 'sessions#login'
+  post '/instructor_login' => 'sessions#instructor_login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
